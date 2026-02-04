@@ -1,70 +1,131 @@
-# Getting Started with Create React App
+# 📄 Piyush Sharma - Digital Resume
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A professional, interactive, and responsive digital resume application built with Modern Web Technologies. This project serves as a dynamic portfolio showcasing skills, experience, and projects with a printable layout.
 
-## Available Scripts
+![Status](https://img.shields.io/badge/Status-Active-success)
+![Tech](https://img.shields.io/badge/Built%20With-React%20%2B%20Vite-61DAFB)
 
-In the project directory, you can run:
+## ✨ Features
 
-### `npm start`
+- **Responsive Design**: Adapts seamlessly to all screen sizes.
+- **Dark Mode**: Built-in theme toggler for light and dark visual preferences.
+- **Print Friendly**: Optimized CSS for printing the resume directly from the browser.
+- **Scroll Animations**: Smooth reveal animations for a premium user experience.
+- **Dynamic Content**: Data-driven components for easy updates.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## 🛠️ Tech Stack
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- **Core**: [React](https://react.dev/) (v19)
+- **Build Tool**: [Vite](https://vitejs.dev/)
+- **Styling**: Modern CSS3, TailwindCSS
+- **Animations**: Custom ScrollReveal using Intersection Observer API
 
-### `npm test`
+## 🚀 Getting Started
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Follow these instructions to run the project locally.
 
-### `npm run build`
+### Prerequisites
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- Node.js (v18 or higher)
+- npm or yarn
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Installation
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+1. **Clone the repository**
+   ```bash
+   git clone <repository-url>
+   cd piyush-resume
+   ```
 
-### `npm run eject`
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+3. **Run the development server**
+   ```bash
+   npm run dev
+   ```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+4. **Build for production**
+   ```bash
+   npm run build
+   ```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## 🏗️ Architecture & Flow
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+The application follows a streamlined component-based architecture. Below is the flow of data and structure of the application.
 
-## Learn More
+### Component Flow Diagram
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```mermaid
+graph TD
+    %% Styling Definitions
+    classDef core fill:#61DAFB,stroke:#333,stroke-width:2px,color:#000;
+    classDef component fill:#e1f5fe,stroke:#0288d1,stroke-width:1px,color:#000;
+    classDef logic fill:#e8f5e9,stroke:#388e3c,stroke-width:1px,color:#000;
+    classDef ui fill:#fff3e0,stroke:#f57c00,stroke-width:1px,color:#000;
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+    User((User / Browser)) -->|Request| Index[index.html]
+    Index -->|Load Script| Main[main.jsx]
+    Main -->|Mount| App[App.jsx]:::core
 
-### Code Splitting
+    subgraph "State Management"
+        App -- "useState" --> ThemeState[Dark Mode State]:::logic
+    end
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+    subgraph "UI Composition"
+        App --> Header[Header / Hero Section]:::ui
+        App --> LayoutContainer[Main Container]:::component
 
-### Analyzing the Bundle Size
+        subgraph "Sidebar (Left)"
+            LayoutContainer --> Sidebar[Aside Column]:::component
+            Sidebar --> SkillIcons[Tech Icons Grid]:::ui
+            Sidebar --> PersonalBars[Personal Skills Bars]:::ui
+            Sidebar --> Contact[Contact Information]:::ui
+        end
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+        subgraph "Content (Right)"
+            LayoutContainer --> MainCol[Main Column]:::component
+            MainCol --> ExperienceList[Experience Section]:::ui
+            MainCol --> ProjectsList[Projects Section]:::ui
+            MainCol --> ServicesList[Services Section]:::ui
+        end
 
-### Making a Progressive Web App
+        App --> Footer[Footer]:::ui
+    end
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+    subgraph "Shared Components"
+        ScrollReveal[ScrollReveal.jsx]:::logic
+    end
 
-### Advanced Configuration
+    ExperienceList -.->|Wrap| ScrollReveal
+    ProjectsList -.->|Wrap| ScrollReveal
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+## 📂 Project Structure
 
-### Deployment
+```bash
+piyush-resume/
+├── public/              # Static assets (images, icons)
+├── src/
+│   ├── components/
+│   │   └── ScrollReveal.jsx  # Animation wrapper component
+│   ├── App.css          # Main styling and theme variables
+│   ├── App.jsx          # Root component containing all resume sections
+│   ├── index.css        # Global CSS resets
+│   └── main.jsx         # React application entry point
+├── index.html           # HTML template
+├── package.json         # Project manifests and scripts
+└── vite.config.js       # Tooling configuration
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+## 🎨 UI Elements Breakdown
 
-### `npm run build` fails to minify
+- **Theme Toggle**: Switch between Light/Dark modes.
+- **Skill Meters**: Visual representation of proficiency levels.
+- **Timeline Cards**: For Experience and Projects (wrapped in animation).
+- **Contact Action**: Print button and clickable contact links.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+---
+© 2024 Piyush Sharma
